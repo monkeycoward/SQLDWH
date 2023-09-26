@@ -1,2 +1,2 @@
-# SQLDWH
+# SQL
 SQL scripts for DWH
