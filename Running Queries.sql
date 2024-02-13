@@ -7,3 +7,10 @@ SELECT
   blocking_session_id
 FROM sys.dm_exec_requests r
 CROSS APPLY sys.dm_exec_sql_text(r.sql_handle) a
+
+---
+select r.session_id, start_time, command, a.text, blocking_session_id, d.name, u.login_name
+from sys.dm_exec_requests r
+cross apply sys.dm_exec_sql_text (r.sql_handle) a
+inner join sys.databases d on r.database_id = d.database_id
+inner join sys.dm_exec_sessions u on r.session_id = u.session_id
